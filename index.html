@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Zoya 🌸</title>
+<style>
+ style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  #page1, #page2, #page3 { display: none; }
+  #page1 { display: flex; }
+
+  /* soft pastel bg that wraps everything */
+  .page-wrap {
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px;
+    gap: 22px;
+    background: linear-gradient(160deg, #fff0f5 0%, #f5eeff 50%, #e8f8ff 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* floating deco dots behind content */
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* typography */
+  .big-title {
+    font-size: 26px;
+    font-weight: 500;
+    color: #b06fa0;
+    text-align: center;
+    line-height: 1.5;
+    position: relative;
+  }
+  .soft-sub {
+    font-size: 14px;
+    color: #b094c4;
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.8;
+    position: relative;
+  }
+
+  /* PAGE 1 open button */
+  .open-btn {
+    background: linear-gradient(135deg, #f9c6d8, #d9b4f5);
+    color: #7a3c6e;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(220,150,200,0.4);
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+    letter-spacing: 0.4px;
+  }
+  .open-btn:hover { transform: scale(1.07); box-shadow: 0 10px 28px rgba(220,150,200,0.55); }
+
+  /* envelope illustration */
+  .env-wrap {
+    position: relative;
+    width: 100px;
+    height: 80px;
+    margin-bottom: 4px;
+  }
+
+  /* PAGE 2 */
+  .page2-title { font-size: 20px; font-weight: 500; color: #b06fa0; text-align: center; }
+  .page2-sub { font-size: 13px; color: #b094c4; text-align: center; }
+
+  .sports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+  }
+  .sport-card {
+    background: #fff;
+    border: 1.5px solid #f5d0e8;
+    border-radius: 18px;
+    padding: 18px 12px;
+    text-align: center;
+    cursor: default;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: 0 2px 12px rgba(220,160,210,0.12);
+  }
+  .sport-card:hover {
+    transform: translateY(-5px) scale(1.04);
+    border-color: #e8a4d0;
+    box-shadow: 0 10px 28px rgba(220,150,200,0.25);
+  }
+  .sport-icon { font-size: 36px; display: block; margin-bottom: 8px; }
+  .sport-name { font-size: 13px; font-weight: 500; color: #a05090; }
+  .sport-vibe { font-size: 11px; color: #c8a0c0; margin-top: 3px; }
+
+  .proposal-box {
+    background: #fff;
+    border: 1.5px solid #f0cce0;
+    border-radius: 20px;
+    padding: 22px 26px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(220,160,210,0.15);
+    position: relative;
+  }
+  .proposal-q { font-size: 17px; font-weight: 500; color: #b06fa0; margin-bottom: 5px; }
+  .proposal-sub { font-size: 12px; color: #c8a0c0; margin-bottom: 18px; line-height: 1.7; }
+
+  .btn-row { display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+  .yes-btn {
+    background: linear-gradient(135deg, #b8f0d8, #9de0f5);
+    color: #1a6b52;
+    border: none;
+    border-radius: 40px;
+    padding: 12px 34px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(120,220,180,0.4);
+    transition: transform 0.15s;
+    white-space: nowrap;
+  }
+  .yes-btn:hover { transform: scale(1.07); }
+
+  #noBtn {
+    background: #fff5f9;
+    border: 1.5px solid #f5cce0;
+    border-radius: 40px;
+    padding: 12px 28px;
+    font-size: 14px;
+    color: #d090b0;
+    cursor: pointer;
+    transition: left 0.22s ease, top 0.22s ease, opacity 0.5s ease, transform 0.22s ease;
+    position: relative;
+    left: 0; top: 0;
+    white-space: nowrap;
+  }
+
+  /* PAGE 3 */
+  #page3 {
+    min-height: 560px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px;
+    background: linear-gradient(160deg, #fff0f5 0%, #f5eeff 50%, #e8f8ff 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  #balloonCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .final-msg {
+    position: relative;
+    z-index: 10;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid #f0cce0;
+    border-radius: 22px;
+    padding: 30px 28px;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(220,150,200,0.2);
+    opacity: 0;
+    transform: scale(0.82) translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .final-msg.show { opacity: 1; transform: scale(1) translateY(0); }
+  .final-emoji { font-size: 32px; margin-bottom: 14px; display: block; }
+  .final-text { font-size: 14.5px; color: #8a5080; line-height: 1.9; }
+  .final-sig { font-size: 12px; color: #c8a0c0; margin-top: 16px; }
+
+  /* sparkle dots on page1 */
+  @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .floaty { animation: floatY 3s ease-in-out infinite; }
+</style>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page-wrap">
+  <!-- deco blobs -->
+  <div class="deco" style="width:180px;height:180px;background:#ffd6e8;top:-60px;left:-60px;"></div>
+  <div class="deco" style="width:140px;height:140px;background:#e8d6ff;bottom:-40px;right:-40px;"></div>
+  <div class="deco" style="width:80px;height:80px;background:#d6f0ff;top:40px;right:20px;"></div>
+
+  <!-- envelope SVG -->
+  <div class="env-wrap floaty">
+    <svg viewBox="0 0 100 80" width="100" height="80" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="16" width="92" height="58" rx="10" fill="#fde8f2" stroke="#f0b8d8" stroke-width="1.5"/>
+      <path d="M4 20 L50 50 L96 20" fill="none" stroke="#f0b8d8" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M4 74 L36 46" fill="none" stroke="#f0b8d8" stroke-width="1.2"/>
+      <path d="M96 74 L64 46" fill="none" stroke="#f0b8d8" stroke-width="1.2"/>
+      <text x="50" y="38" text-anchor="middle" font-size="18" fill="#e0789a">✿</text>
+    </svg>
+  </div>
+
+  <div class="big-title">Hey Zoya… 🌸<br>I'm sorry, you know what for.</div>
+  <div class="soft-sub">There's something a lil' sweet I made for you — open it? 🎀</div>
+  <button class="open-btn" onclick="showPage2()">Open it 💌</button>
+
+  <!-- tiny hearts scattered -->
+  <div style="position:absolute;font-size:18px;top:18px;left:28px;opacity:0.4;transform:rotate(-15deg)">♡</div>
+  <div style="position:absolute;font-size:12px;bottom:40px;left:48px;opacity:0.3;transform:rotate(10deg);color:#d090c0">♡</div>
+  <div style="position:absolute;font-size:14px;top:60px;right:36px;opacity:0.35;color:#c0a0e0">✦</div>
+  <div style="position:absolute;font-size:10px;bottom:28px;right:60px;opacity:0.3;color:#a0c8e8">✦</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page-wrap" style="gap:16px;">
+  <div class="deco" style="width:160px;height:160px;background:#ffe0ee;top:-50px;right:-50px;"></div>
+  <div class="deco" style="width:120px;height:120px;background:#e0d6ff;bottom:-30px;left:-30px;"></div>
+
+  <div class="page2-title">Pick your vibe, Zoya 🎀</div>
+  <div class="page2-sub">I promise I'll try my best (and lose with dignity 😌)</div>
+
+  <div class="sports-grid">
+    <div class="sport-card">
+      <span class="sport-icon">🎾</span>
+      <div class="sport-name">Lawn Tennis</div>
+      <div class="sport-vibe">graceful & fierce ✨</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-icon">🏸</span>
+      <div class="sport-name">Badminton</div>
+      <div class="sport-vibe">feathers & giggles 🌸</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-icon">🥒</span>
+      <div class="sport-name">Pickleball</div>
+      <div class="sport-vibe">weirdly adorable 💜</div>
+    </div>
+    <div class="sport-card">
+      <span class="sport-icon">🕹️</span>
+      <div class="sport-name">Arcade</div>
+      <div class="sport-vibe">chaos & cotton candy 🍭</div>
+    </div>
+  </div>
+
+  <div class="proposal-box">
+    <!-- tiny ribbon top -->
+    <div style="font-size:20px;margin-bottom:8px;">🎀</div>
+    <div class="proposal-q">Sooo… play date? 🌷</div>
+    <div class="proposal-sub">just us, good games, zero pressure,<br>100% good vibes 💕</div>
+    <div class="btn-row">
+      <button class="yes-btn" onclick="showPage3()">Yes omg yes!! 🎉</button>
+      <button id="noBtn" onmouseover="runAway()" onclick="runAway()">no… 🙈</button>
+    </div>
+  </div>
+
+  <div style="position:absolute;font-size:13px;top:14px;left:24px;opacity:0.3;color:#d090b8">♡</div>
+  <div style="position:absolute;font-size:10px;bottom:20px;right:30px;opacity:0.25;color:#a8c0e8">✦</div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3">
+  <canvas id="balloonCanvas"></canvas>
+  <div class="final-msg" id="finalMsg">
+    <span class="final-emoji">🎈💕</span>
+    <div class="final-text">
+      I like how easy it is to talk to you  no pressure, no overthinking… just good vibes.<br><br>
+      It's kinda rare to find someone you can randomly text and still enjoy every bit of the conversation.<br><br>
+      Not really sure what to call this, but whatever it is… it's nice. And I'm not complaining 🙂  ( aur kya hi likhtaa)
+    </div>
+    <div class="final-sig">— your play-date partner(Mayank) 🎾🍭🌸</div>
+  </div>
+</div>
+
+<script>
+  function showPage2() {
+    document.getElementById('page1').style.display = 'none';
+    const p2 = document.getElementById('page2');
+    p2.style.display = 'flex';
+    p2.style.opacity = 0;
+    p2.style.transition = 'opacity 0.55s ease';
+    setTimeout(() => p2.style.opacity = 1, 30);
+  }
+
+  let noCount = 0;
+  function runAway() {
+    noCount++;
+    const btn = document.getElementById('noBtn');
+    const row = btn.closest('.btn-row');
+    const maxShift = 90;
+    const rx = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * maxShift);
+    const ry = (Math.random() > 0.5 ? 1 : -1) * (20 + Math.random() * 40);
+    btn.style.left = rx + 'px';
+    btn.style.top = ry + 'px';
+    if (noCount >= 4) {
+      btn.style.opacity = 0;
+      btn.style.transform = 'scale(0.2) rotate(20deg)';
+      btn.style.pointerEvents = 'none';
+    }
+  }
+
+  function showPage3() {
+    document.getElementById('page2').style.display = 'none';
+    const p3 = document.getElementById('page3');
+    p3.style.display = 'flex';
+    setTimeout(() => {
+      const c = document.getElementById('balloonCanvas');
+      c.width = c.offsetWidth || 400;
+      c.height = c.offsetHeight || 560;
+      launchBalloons(c);
+    }, 60);
+    setTimeout(() => document.getElementById('finalMsg').classList.add('show'), 700);
+  }
+
+  function launchBalloons(canvas) {
+    const ctx = canvas.getContext('2d');
+    const pastelColors = [
+      '#ffb3cc','#ffcce0','#f9b4f5','#d4b3ff',
+      '#b3d9ff','#b3f5e0','#ffe0b3','#ffd6f0',
+      '#c8f0d8','#f5d0ff'
+    ];
+    const balloons = Array.from({length: 32}, () => ({
+      x: Math.random() * canvas.width,
+      y: canvas.height + 30 + Math.random() * 180,
+      rx: 13 + Math.random() * 13,
+      ry: 16 + Math.random() * 14,
+      color: pastelColors[Math.floor(Math.random() * pastelColors.length)],
+      speed: 1.0 + Math.random() * 1.8,
+      wobble: Math.random() * Math.PI * 2,
+      ws: 0.025 + Math.random() * 0.025,
+      alpha: 0.72 + Math.random() * 0.28,
+    }));
+
+    function draw(b) {
+      ctx.save();
+      ctx.globalAlpha = b.alpha;
+      // balloon body
+      ctx.beginPath();
+      ctx.ellipse(b.x, b.y, b.rx, b.ry, 0, 0, Math.PI*2);
+      ctx.fillStyle = b.color;
+      ctx.fill();
+      // soft shine
+      ctx.beginPath();
+      ctx.ellipse(b.x - b.rx*0.28, b.y - b.ry*0.28, b.rx*0.22, b.ry*0.18, -0.4, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      ctx.fill();
+      // knot
+      ctx.beginPath();
+      ctx.arc(b.x, b.y + b.ry, 3, 0, Math.PI*2);
+      ctx.fillStyle = b.color;
+      ctx.fill();
+      // string
+      ctx.beginPath();
+      ctx.moveTo(b.x, b.y + b.ry + 3);
+      const cx1 = b.x + Math.sin(b.wobble)*10;
+      const cy1 = b.y + b.ry + 14;
+      const cx2 = b.x - Math.sin(b.wobble)*8;
+      const cy2 = b.y + b.ry + 26;
+      ctx.bezierCurveTo(cx1, cy1, cx2, cy2, b.x + Math.sin(b.wobble+1)*6, b.y + b.ry + 30);
+      ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+      ctx.lineWidth = 0.9;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      balloons.forEach(b => {
+        b.y -= b.speed;
+        b.wobble += b.ws;
+        b.x += Math.sin(b.wobble) * 0.8;
+        if (b.y < -b.ry * 2 - 30) {
+          b.y = canvas.height + 40;
+          b.x = Math.random() * canvas.width;
+        }
+        draw(b);
+      });
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+</script>
+</script>
+</body>
+</html>
